@@ -1,6 +1,7 @@
 package com.neway.sort.tree;
 
 import com.neway.sort.model.TreeNode;
+import sun.reflect.generics.tree.Tree;
 
 import java.util.Stack;
 
@@ -27,9 +28,9 @@ public class TreeTraversal {
         d.left = f;
         c.right = g;
 
-        postTraversalByStack(a);
-        System.out.println();
         postTraversal(a);
+        System.out.println();
+        postTraversalByStack(a);
     }
 
     public static void preTraversalByStack(TreeNode root) {
@@ -64,18 +65,17 @@ public class TreeTraversal {
         }
     }
 
-    public static void postTraversal(TreeNode root) {
+    public static void inTraversal(TreeNode root) {
         if(root != null) {
-            postTraversal(root.left);
+            inTraversal(root.left);
             System.out.print(root.val + " ");
-            postTraversal(root.right);
+            inTraversal(root.right);
         } else {
             return;
         }
     }
 
-    public static void postTraversalByStack(TreeNode root) {
-
+    public static void inTraversalByStack(TreeNode root) {
 
         Stack<TreeNode> treeNodes = new Stack<>();
         while(root != null || !treeNodes.isEmpty()) {
@@ -92,4 +92,42 @@ public class TreeTraversal {
     }
 
 
+    public static void postTraversal(TreeNode root) {
+        if(root == null) {
+            return;
+        } else {
+            postTraversal(root.left);
+            postTraversal(root.right);
+            System.out.print(root.val + " ");
+        }
+    }
+
+
+    public static void postTraversalByStack(TreeNode root) {
+        if(root == null) {
+            return;
+        }
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+
+        stack1.push(root);
+
+        while(!stack1.isEmpty()) {
+            TreeNode node = stack1.pop();
+            stack2.push(node);
+            if(node.left != null) {
+                stack1.push(node.left);
+            }
+
+            if(node.right != null) {
+                stack1.push(node.right);
+            }
+        }
+
+        while(!stack2.isEmpty()) {
+            TreeNode node = stack2.pop();
+            System.out.print(node.val + " ");
+        }
+
+    }
 }
