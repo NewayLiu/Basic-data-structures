@@ -18,42 +18,25 @@ public class MergeSort implements Sort {
     }
 
     /**
-     * ·Ö¸îÊı×é
-     * @param arr ĞèÒªÅÅĞòµÄÊı×é
-     * @param start ±»·Ö¸îµÄÄÇ¸ö·Ö×éµÄÆğµã
-     * @param end ±»·Ö¸îµÄÄÇ¸ö·Ö×éµÄÄ©¶Ë
+     * åˆ†å‰²æ•°ç»„
+     * @param arr éœ€è¦æ’åºçš„æ•°ç»„
+     * @param start è¢«åˆ†å‰²çš„é‚£ä¸ªåˆ†ç»„çš„èµ·ç‚¹
+     * @param end è¢«åˆ†å‰²çš„é‚£ä¸ªåˆ†ç»„çš„æœ«ç«¯
      */
     public void divide(int[] arr, int start, int end) {
 
-        /**
-         * Èç¹ûµ±Ç°µÄ·Ö×éÁËÄÚÖ»ÓĞÒ»ÔªËØ»òÕßÓĞÁ½¸öÔªËØ£¬ÄÇÃ´ÎÒÃÇÅÅĞòºÃÁËÖ®ºó·µ»Ø
-         */
-        if (start == end || end - start == 1) {
-            if (arr[start] > arr[end]) {
-                int temp = arr[start];
-                arr[start] = arr[end];
-                arr[end] = temp;
-            }
+      
+        if (start >= end ){
             return;
         }
 
-        /**
-         * Èç¹û·Ö×éµÄ³¤¶È´óÓÚ1£¬ÄÇ¾Í¼ÌĞø·Ö×é£¬
-         * ¸ù¾İ´ıÅÅÊı×éµÄ³¤¶È£¬mid µÄÖµÂÔÓĞ²»Í¬
-         *
-         */
-        int mid = -1;
-        if ((end + start) % 2 != 0) {
-            mid = (int) Math.floor((end + start) >> 1);
-        } else {
-            mid = (end + start) >> 1;
-        }
+        int mid = (end + start) >> 1;
 
-        // µİ¹éµ÷ÓÃ·Ö×é
+        // é€’å½’è°ƒç”¨åˆ†ç»„
         divide(arr, start, mid);
         divide(arr, mid + 1, end);
 
-        //·ÖÍê×éÖ®ºó¿ªÊ¼ºÏ²¢
+        //åˆ†å®Œç»„ä¹‹åå¼€å§‹åˆå¹¶
         merge(arr, start, mid, end);
         for (int i : arr) {
             System.out.print(i + " ");
@@ -63,11 +46,11 @@ public class MergeSort implements Sort {
     }
 
     /**
-     * ºÏ²¢Á½¸ö·Ö×é£¨ºÏ²¢µÄĞ´·¨ÓĞµã·±Ëö£¬Ó¦¸ÃÊÇ¿ÉÒÔ¼ÌĞøÓÅ»¯µÄ£©
-     * @param arr ĞèÒªÅÅĞòµÄÊı×é
-     * @param start µÚÒ»¸ö·Ö×éµÄÆğµã
-     * @param mid µÚÒ»¸ö·Ö×éµÄÄ©¶Ë£¬µÚ¶ş¸ö·Ö×éµÄÆğµãÊÇ mid + 1
-     * @param end µÚ¶ş¸ö·Ö×éµÄÄ©¶Ë
+     * åˆå¹¶ä¸¤ä¸ªåˆ†ç»„ï¼ˆåˆå¹¶çš„å†™æ³•æœ‰ç‚¹ç¹çï¼Œåº”è¯¥æ˜¯å¯ä»¥ç»§ç»­ä¼˜åŒ–çš„ï¼‰
+     * @param arr éœ€è¦æ’åºçš„æ•°ç»„
+     * @param start ç¬¬ä¸€ä¸ªåˆ†ç»„çš„èµ·ç‚¹
+     * @param mid ç¬¬ä¸€ä¸ªåˆ†ç»„çš„æœ«ç«¯ï¼Œç¬¬äºŒä¸ªåˆ†ç»„çš„èµ·ç‚¹æ˜¯ mid + 1
+     * @param end ç¬¬äºŒä¸ªåˆ†ç»„çš„æœ«ç«¯
      */
     public void merge(int[] arr, int start, int mid, int end) {
         int startCopy = start;
