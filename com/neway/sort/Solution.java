@@ -1,6 +1,8 @@
 package com.neway.sort;
 
 
+import com.neway.sort.linearlist.StackOperation;
+
 import java.util.Stack;
 
 public class Solution {
@@ -9,11 +11,17 @@ public class Solution {
         Solution s = new Solution();
         Stack<Integer> stack = new Stack<>();
         stack.push(1);
+        stack.push(5);
+        stack.push(4);
         stack.push(2);
-        stack.push(3);
+        stack.push(6);
+        stack.push(-2);
+        stack.push(-3);
+        stack.push(9);
+        stack.push(7);
+        stack.push(1);
 
-        System.out.println(0);
-        s.reverseStack(stack);
+        StackOperation.sortTheStack(stack);
         System.out.println(0);
 
     }
